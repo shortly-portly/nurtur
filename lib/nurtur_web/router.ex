@@ -21,6 +21,13 @@ defmodule NurturWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+
+    live "/organisations", OrganisationLive.Index, :index
+    live "/organisations/new", OrganisationLive.Index, :new
+    live "/organisations/:id/edit", OrganisationLive.Index, :edit
+
+    live "/organisations/:id", OrganisationLive.Show, :show
+    live "/organisations/:id/show/edit", OrganisationLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

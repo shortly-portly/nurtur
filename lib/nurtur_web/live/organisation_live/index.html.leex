@@ -1,0 +1,35 @@
+<h1>Listing Organisations</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, NurturWeb.OrganisationLive.FormComponent,
+    id: @organisation.id || :new,
+    title: @page_title,
+    action: @live_action,
+    organisation: @organisation,
+    return_to: Routes.organisation_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="organisations">
+    <%= for organisation <- @organisations do %>
+      <tr id="organisation-<%= organisation.id %>">
+        <td><%= organisation.name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.organisation_show_path(@socket, :show, organisation) %></span>
+          <span><%= live_patch "Edit", to: Routes.organisation_index_path(@socket, :edit, organisation) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: organisation.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Organisation", to: Routes.organisation_index_path(@socket, :new) %></span>

@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<h1 class="header">Register</h1>
 
 <%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
   <%= if @changeset.action do %>
@@ -7,16 +7,19 @@
     </div>
   <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+  <div class="px-3 mb-6 md:mb-0">
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+    <%= label f, :email, class: "uppercase tracking-wide font-semibold" %>
+    <%= email_input f, :email, required: true, class: "w-full p-2 my-2 w-full border border-gray-200  bg-gray-100 rounded" %>
+    <%= error_tag f, :email %>
 
-  <div>
-    <%= submit "Register" %>
+    <%= label f, :password, class: "uppercase tracking-wide font-semibold" %>
+    <%= password_input f, :password, required: true, class: "w-full p-2 my-2 w-full border border-gray-200  bg-gray-100 rounded" %>
+    <%= error_tag f, :password %>
+
+    <div>
+      <%= submit "Register", class: "text-indigo-500 hover:text-indigo-700 py-4" %>
+    </div>
   </div>
 <% end %>
 

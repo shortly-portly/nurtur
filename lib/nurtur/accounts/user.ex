@@ -1,12 +1,22 @@
 defmodule Nurtur.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import EctoEnum
+
+  defenum(RolesEnum, :role, [
+    :system,
+    :super,
+    :admin,
+    :nurse,
+    :finance
+  ])
 
   @derive {Inspect, except: [:password]}
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
+    field :role, RolesEnum
     field :confirmed_at, :naive_datetime
 
     timestamps()
@@ -34,6 +44,18 @@ defmodule Nurtur.Accounts.User do
     |> cast(attrs, [:email, :password])
     |> validate_email()
     |> validate_password(opts)
+  end
+
+  @doc """
+  A user changeset for registering admins.
+
+  Note the use of prepare_changes/2. The function set_admin_role/1 will only
+  be called if the registration_changeset returns a valid changeset.
+  """
+  def admin_registration_changeset(user, attrs) do
+    user
+    |> registration_changeset(attrs)
+    |> prepare_changes(&set_admin_role/1)
   end
 
   defp validate_email(changeset) do
@@ -135,5 +157,10 @@ defmodule Nurtur.Accounts.User do
     else
       add_error(changeset, :current_password, "is not valid")
     end
+  end
+
+  defp set_admin_role(changeset) do
+    changeset
+    |> put_change(:role, :admin)
   end
 end

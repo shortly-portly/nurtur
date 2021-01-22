@@ -23,11 +23,11 @@
   <div class="px-3 mb-6 md:mb-0">
 
     <%= label f, :email, class: "uppercase tracking-wide font-semibold" %>
-    <%= email_input f, :email, required: true, class: "w-full p-2 my-2 w-full border border-gray-200  bg-gray-100 rounded" %>
+    <%= email_input f, :email, required: true, class: "w-full p-2 my-2 w-full border border-gray-200  rounded" %>
     <%= error_tag f, :email %>
 
     <%= label f, :password, class: "uppercase tracking-wide font-semibold" %>
-    <%= password_input f, :password, required: true, class: "w-full p-2 my-2 w-full border border-gray-200  bg-gray-100 rounded" %>
+    <%= password_input f, :password, required: true, class: "w-full p-2 my-2 w-full border border-gray-200   rounded" %>
     <%= error_tag f, :password %>
 
 

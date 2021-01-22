@@ -1,16 +1,16 @@
 
 <div class="flex items-center   justify-between py-5">
-    <div class="">
-      <h1 class="header">Listing Organisations</h1>
-    </div>
-    <div>
-      <img
-        src="<%= Routes.static_path(@socket, "/images/organisation.svg") %>"
-        alt="Add User"
-        class="w-40"
-      />
-    </div>
+  <div class="">
+    <h1 class="header">Listing Organisations</h1>
   </div>
+  <div>
+    <img
+      src="<%= Routes.static_path(@socket, "/images/organisation.svg") %>"
+      alt="Add User"
+      class="w-40"
+    />
+  </div>
+</div>
 
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal @socket, NurturWeb.OrganisationLive.FormComponent,

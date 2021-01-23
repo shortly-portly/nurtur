@@ -21,13 +21,6 @@ defmodule NurturWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
-
-    live "/organisations", OrganisationLive.Index, :index
-    live "/organisations/new", OrganisationLive.Index, :new
-    live "/organisations/:id/edit", OrganisationLive.Index, :edit
-
-    live "/organisations/:id", OrganisationLive.Show, :show
-    live "/organisations/:id/show/edit", OrganisationLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
@@ -72,6 +65,14 @@ defmodule NurturWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    # Organisations
+    live "/organisations", OrganisationLive.Index, :index
+    live "/organisations/new", OrganisationLive.Index, :new
+    live "/organisations/:id/edit", OrganisationLive.Index, :edit
+
+    live "/organisations/:id", OrganisationLive.Show, :show
+    live "/organisations/:id/show/edit", OrganisationLive.Show, :edit
   end
 
   scope "/", NurturWeb do

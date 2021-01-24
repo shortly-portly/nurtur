@@ -1,4 +1,4 @@
-<h1>Log in</h1>
+<h1 class="header">Log in</h1>
 
 <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
   <%= if @error_message do %>
@@ -7,21 +7,32 @@
     </div>
   <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+  <%= label f, :email, class: "label" %>
+  <%= email_input f, :email, required: true, class: "input" %>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
+  <%= label f, :password, class: "label" %>
+  <%= password_input f, :password, required: true, class: "input" %>
 
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
+  <div class="mt-4">
+  <%= label f, :remember_me, "Keep me logged in for 60 days", class: "tracking-wide" %>
+  <%= checkbox f, :remember_me, class: "ml-10" %>
+  </div>
 
-  <div>
-    <%= submit "Log in" %>
+  <div class="flex justify-between py-5">
+    <div>
+      <%= submit "Log in", class: "submit" %>
+    </div>
+    <div>
+      <img
+        src="<%= Routes.static_path(@conn, "/images/login.svg") %>"
+        alt="Add User"
+        class="w-40"
+      />
+    </div>
   </div>
 <% end %>
 
 <p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-indigo-500 hover:text-indigo-700 focus:outline-none pt-2" %> |
+  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "text-indigo-500 hover:text-indigo-700 focus:outline-none pt-2" %>
 </p>

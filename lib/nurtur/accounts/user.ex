@@ -19,6 +19,8 @@ defmodule Nurtur.Accounts.User do
     field :role, RolesEnum
     field :confirmed_at, :naive_datetime
 
+    belongs_to :organisation, Nurtur.Organisations.Organisation
+
     timestamps()
   end
 
@@ -56,6 +58,8 @@ defmodule Nurtur.Accounts.User do
     user
     |> registration_changeset(attrs)
     |> prepare_changes(&set_admin_role/1)
+    |> cast_assoc(:organisation, with: &Nurtur.Organisations.Organisation.changeset/2)
+    |> IO.inspect(label: "admin registration changeset")
   end
 
   defp validate_email(changeset) do

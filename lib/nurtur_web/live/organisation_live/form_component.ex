@@ -41,6 +41,8 @@ defmodule NurturWeb.OrganisationLive.FormComponent do
   end
 
   defp save_organisation(socket, :new, organisation_params) do
+    organisation_params = Map.put(organisation_params, "email", "foobar")
+
     case Organisations.create_organisation(organisation_params) do
       {:ok, _organisation} ->
         {:noreply,

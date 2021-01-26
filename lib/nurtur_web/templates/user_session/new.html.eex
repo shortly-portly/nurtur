@@ -1,4 +1,15 @@
-<h1 class="header">Log in</h1>
+<div class="flex items-center justify-between">
+  <div>
+    <div class="header">Log in</div>
+  </div>
+  <div>
+    <img
+      src="<%= Routes.static_path(@conn, "/images/login.svg") %>"
+      alt="Add User"
+      class="w-40 h-40"
+    />
+  </div>
+</div>
 
 <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
   <%= if @error_message do %>
@@ -18,21 +29,12 @@
   <%= checkbox f, :remember_me, class: "ml-10" %>
   </div>
 
-  <div class="flex justify-between py-5">
-    <div>
-      <%= submit "Log in", class: "submit" %>
-    </div>
-    <div>
-      <img
-        src="<%= Routes.static_path(@conn, "/images/login.svg") %>"
-        alt="Add User"
-        class="w-40"
-      />
-    </div>
+  <div>
+    <%= submit "Log in", class: "submit" %>
   </div>
 <% end %>
 
-<p>
+<p class="py-5">
   <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-indigo-500 hover:text-indigo-700 focus:outline-none pt-2" %> |
   <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "text-indigo-500 hover:text-indigo-700 focus:outline-none pt-2" %>
 </p>

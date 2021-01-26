@@ -1,17 +1,16 @@
 
-<div class="flex items-center   justify-between py-5">
+<div class="flex items-center justify-between">
   <div class="">
-<h1 class="header">Register</h1>
+    <div class="header">Register</div>
   </div>
   <div>
     <img
       src="<%= Routes.static_path(@conn, "/images/kids.svg") %>"
       alt="Add User"
-      class="w-52"
+      class="w-40 h-40"
     />
   </div>
 </div>
-
 
 <%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
   <%= if @changeset.action do %>
@@ -20,23 +19,20 @@
     </div>
   <% end %>
 
-  <div class="px-3 mb-6 md:mb-0">
 
-    <%= label f, :email, class: "uppercase tracking-wide font-semibold" %>
-    <%= email_input f, :email, required: true, class: "w-full p-2 my-2 w-full border border-gray-200  rounded" %>
-    <%= error_tag f, :email %>
+  <%= label f, :email, class: "label" %>
+  <%= email_input f, :email, required: true, class: "input" %>
+  <%= error_tag f, :email %>
 
-    <%= label f, :password, class: "uppercase tracking-wide font-semibold" %>
-    <%= password_input f, :password, required: true, class: "w-full p-2 my-2 w-full border border-gray-200   rounded" %>
-    <%= error_tag f, :password %>
+  <%= label f, :password, class: "label" %>
+  <%= password_input f, :password, required: true, class: "input" %>
+  <%= error_tag f, :password %>
 
 
-    <div class="">
-      <%= submit "Register", class: "text-indigo-500 hover:text-indigo-700 focus:outline-none pt-2" %>
-    </div>
-
+  <div class="">
+    <%= submit "Register", class: "submit" %>
   </div>
-  </div>
+
 <% end %>
 
 <p>

@@ -43,7 +43,7 @@ defmodule Nurtur.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :role])
+    |> cast(attrs, [:email, :password])
     |> validate_email()
     |> validate_password(opts)
   end
@@ -54,12 +54,14 @@ defmodule Nurtur.Accounts.User do
   Note the use of prepare_changes/2. The function set_admin_role/1 will only
   be called if the registration_changeset returns a valid changeset.
   """
-  def admin_registration_changeset(user, attrs) do
+  def admin_registration_changeset(user, attrs, opts \\ []) do
     user
-    |> registration_changeset(attrs)
+    |> registration_changeset(attrs, opts)
     |> prepare_changes(&set_admin_role/1)
-    |> cast_assoc(:organisation, with: &Nurtur.Organisations.Organisation.changeset/2)
-    |> IO.inspect(label: "admin registration changeset")
+    |> cast_assoc(:organisation,
+      with: &Nurtur.Organisations.Organisation.changeset/2,
+      required: true
+    )
   end
 
   defp validate_email(changeset) do

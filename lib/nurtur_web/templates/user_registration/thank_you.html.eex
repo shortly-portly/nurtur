@@ -1,0 +1,14 @@
+<div class="flex items-center   justify-between py-5">
+  <div class="">
+    <div class="header text-center mb-10">Thank You</div>
+    <div class="text-center">To complete the registration process please check the email we've just sent you.</div>
+    <div class="text-center">See you soon!</div>
+  </div>
+  <div>
+    <img
+      src="<%= Routes.static_path(@conn, "/images/check_email.svg") %>"
+      alt="Add User"
+      class="w-40 h-40"
+    />
+  </div>
+</div>

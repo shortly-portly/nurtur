@@ -7,7 +7,7 @@ defmodule Nurtur.Repo.Migrations.AddRolesToUsers do
     RolesEnum.create_type()
 
     alter table(:users) do
-      add :role, RolesEnum.type(), null: false
+      add :role, RolesEnum.type()
     end
   end
 

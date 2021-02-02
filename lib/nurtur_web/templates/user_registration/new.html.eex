@@ -19,15 +19,27 @@
     </div>
   <% end %>
 
+  <%= inputs_for f, :organisation, fn o -> %>
 
-  <%= label f, :email, class: "label" %>
-  <%= email_input f, :email, required: true, class: "input" %>
-  <%= error_tag f, :email %>
+    <div class="mb-8">
+    <%= label o, :name, "Organisation Name", class: "label" %>
+    <%= text_input o, :name, class: "input" %>
+    <%= error_tag o, :name %>
+    <div class="text-gray-500">If you are running a number of nurseries then just type the name of the nursery group.</div>
+  </div>
+  <% end %>
 
-  <%= label f, :password, class: "label" %>
-  <%= password_input f, :password, required: true, class: "input" %>
-  <%= error_tag f, :password %>
+    <div class="mb-8">
+    <%= label f, :email, class: "label" %>
+    <%= email_input f, :email, required: true, class: "input" %>
+    <%= error_tag f, :email %>
+  </div>
 
+  <div class="mb-8">
+    <%= label f, :password, class: "label" %>
+    <%= password_input f, :password, required: true, class: "input" %>
+    <%= error_tag f, :password %>
+</div>
 
   <div class="">
     <%= submit "Register", class: "submit" %>

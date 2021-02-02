@@ -109,6 +109,21 @@ defmodule Nurtur.Accounts do
     User.registration_changeset(user, attrs, hash_password: false)
   end
 
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking Admin changes. This differs from
+  `change_user_registration` in that it creates/updates the associated organisation
+  details.
+
+  ## Examples
+
+      iex> change_user_registration(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_admin_registration(%User{} = user, attrs \\ %{}) do
+    User.admin_registration_changeset(user, attrs, has_password: false)
+  end
+
   ## Settings
 
   @doc """

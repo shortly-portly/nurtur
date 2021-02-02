@@ -57,6 +57,9 @@ defmodule NurturWeb.Router do
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit
     put "/users/reset_password/:token", UserResetPasswordController, :update
+
+    # The following route needs to be deleted - it is only here to make testing page layout easier.
+    get "/users/thank_you", UserRegistrationController, :thank_you
   end
 
   scope "/", NurturWeb do

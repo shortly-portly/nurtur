@@ -4,7 +4,6 @@ defmodule Nurtur.Repo.Migrations.CreateOrganisations do
   def change do
     create table(:organisations) do
       add :name, :string
-      add :user_id, references(:users)
 
       timestamps()
     end

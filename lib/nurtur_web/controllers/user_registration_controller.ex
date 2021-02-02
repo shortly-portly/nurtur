@@ -6,14 +6,12 @@ defmodule NurturWeb.UserRegistrationController do
   alias NurturWeb.UserAuth
 
   def new(conn, _params) do
-    changeset = Accounts.change_user_registration(%User{})
+    changeset = Accounts.change_admin_registration(%User{}) |> IO.inspect()
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
-    user_params = Map.put(user_params, "role", "admin")
-
-    case Accounts.register_user(user_params) do
+    case Accounts.register_admin(user_params) do
       {:ok, user} ->
         {:ok, _} =
           Accounts.deliver_user_confirmation_instructions(
@@ -22,11 +20,14 @@ defmodule NurturWeb.UserRegistrationController do
           )
 
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> UserAuth.log_in_user(user)
+        |> render("thank_you.html")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
+  end
+
+  def thank_you(conn, _) do
+    render(conn, "thank_you.html")
   end
 end

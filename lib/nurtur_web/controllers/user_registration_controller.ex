@@ -6,7 +6,7 @@ defmodule NurturWeb.UserRegistrationController do
   alias NurturWeb.UserAuth
 
   def new(conn, _params) do
-    changeset = Accounts.change_admin_registration(%User{}) |> IO.inspect()
+    changeset = Accounts.change_admin_registration(%User{})
     render(conn, "new.html", changeset: changeset)
   end
 
